@@ -36,17 +36,6 @@ public class User implements UserDetails {
     @Column(name = "updated_at")
     private Date updateAt;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -84,6 +73,18 @@ public class User implements UserDetails {
 
 
     // Getters and setters
+    public Integer getId() {
+        return id;
+    }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
     public Date getCreatedAt() {
         return createdAt;
     }
@@ -91,6 +92,7 @@ public class User implements UserDetails {
     public Date getUpdateAt() {
         return updateAt;
     }
+
 
     public void setId(Integer id) {
         this.id = id;

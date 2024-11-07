@@ -3,6 +3,7 @@ package com.example.auth_api.controllers;
 import com.example.auth_api.dtos.LoginUserDto;
 import com.example.auth_api.dtos.RegisterUserDto;
 import com.example.auth_api.entities.User;
+import com.example.auth_api.responses.LoginResponse;
 import com.example.auth_api.services.AuthenticationService;
 import com.example.auth_api.services.JwtService;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    @PostMapping("/sigup")
+    @PostMapping("/signup")
     public ResponseEntity<User> register(@RequestBody RegisterUserDto registerUserDto){
         User registeredUser = authenticationService.signup(registerUserDto);
 
@@ -38,7 +39,7 @@ public class AuthenticationController {
 
         String jwtToken = jwtService.generateToken(authenticatedUser);
 
-        LoginResponse loginResponse = new LoginResponse().setToken(jwtToken).setExpiresIn(jwtService.getExpirationTime());
+        LoginResponse loginResponse = new LoginResponse(jwtToken, jwtService.getExpirationTime());
 
         return ResponseEntity.ok(loginResponse);
     }
